@@ -5,7 +5,7 @@ namespace bloquesModelo\bloqueModelo1\funcion;
 
 include_once('Redireccionador.php');
 
-class FormProcessor {
+class mostrar {
     
     var $miConfigurador;
     var $lenguaje;
@@ -25,12 +25,29 @@ class FormProcessor {
     function procesarFormulario() {    
 
         //Aquí va la lógica de procesamiento
-        
-        
+    
+       // echo $_REQUEST['saludo']. "Usted digitó en el formulario ".$_REQUEST['nombreBloque'];
+       
+    	$conexion = "estructura";
+    	$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
+    	
+    	$parametros=array(
+    		'nombre'=>$_REQUEST['nombreBloque'],
+    	);
+    	
+//     	 $cadenaSql = $this->miSql->getCadenaSql('solicitarPagina', $parametros);
+//     	$resultado= $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+    	
+//     	var_dump($resultado);
+    	
+//     	exit;
         //Al final se ejecuta la redirección la cual pasará el control a otra página
-        $variable='cualquierDato';
-        Redireccionador::redireccionar('opcion1',$variable);     
+        $variable=array(
+        	'digitado'=>$_REQUEST['nombreBloque'],
+        		'hora'=>date('Y-m-d'),
+        );
         
+        Redireccionador::redireccionar('opcion1',$variable);
     	        
     }
     
@@ -45,7 +62,7 @@ class FormProcessor {
     
 }
 
-$miProcesador = new FormProcessor ( $this->lenguaje, $this->sql );
+$miProcesador = new mostrar ( $this->lenguaje, $this->sql );
 
 $resultado= $miProcesador->procesarFormulario ();
 

@@ -29,8 +29,7 @@ class FormProcessor {
         
         //Al final se ejecuta la redirección la cual pasará el control a otra página
         $variable='cualquierDato';
-        Redireccionador::redireccionar('opcion1',$variable);     
-        
+        Redireccionador::redireccionar('opcion1',$variable);
     	        
     }
     

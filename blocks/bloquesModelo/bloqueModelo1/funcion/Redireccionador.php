@@ -10,7 +10,7 @@ class Redireccionador {
 	public static function redireccionar($opcion, $valor = "") {
 		
 	    $miConfigurador = \Configurador::singleton ();
-		
+	        
 		switch ($opcion) {
 			
 			case "opcion1" :
