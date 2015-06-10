@@ -69,7 +69,7 @@ class RadioButtonHtml extends HtmlBase{
         $cadena = '';
         foreach ( $opciones as $clave => $valor ) {
             $opcion = explode ( "&", $valor );
-            if ($opcion [0] != "") {
+            if ([0] != "") {
                 if ($opcion [0] != $this->atributos ["seleccion"]) {
                     $cadena .= "<div>";
                     $cadena .= "<input type='radio' id='" . $id . "' " . self::HTMLNAME . "'" . $nombre . "' value='" . $opcion [0] . "' />";
