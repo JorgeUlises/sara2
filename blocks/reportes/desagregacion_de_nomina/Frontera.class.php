@@ -2,8 +2,6 @@
 
 namespace reportes\desagregacion_de_nomina;
 
-
-
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");
 	exit ();
@@ -39,17 +37,20 @@ class Frontera {
 		$this->funcion = $funcion;
 	}
 	function html() {
-				
+		
 		// Como se tiene un solo formulario no es necesario un switch para cargarlo:
 		$this->ruta = $this->miConfigurador->getVariableConfiguracion ( "rutaBloque" );
 		
 		if (isset ( $_REQUEST ['opcion'] )) {
-									
+			
 			switch ($_REQUEST ['opcion']) {
-								
-				case "mostrarIngreso" :					
+				
+				case "mostrarIngreso" :
 					include_once ($this->ruta . "/formulario/resultado.php");
-					break;				
+					break;
+				case "regresar" :
+					include_once ($this->ruta . "/formulario/form.php");
+					break;
 			}
 		} else {
 			include_once ($this->ruta . "/formulario/form.php");

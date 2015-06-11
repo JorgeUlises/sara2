@@ -50,36 +50,37 @@ class Formulario {
 		
 		$conexion = 'datosNomina';
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);		
-		
+
 		// ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
 		$esteCampo = $esteBloque ['nombre'];
 		$atributos ['id'] = $esteCampo;
 		$atributos ['nombre'] = $esteCampo;
-		
 		// Si no se coloca, entonces toma el valor predeterminado 'application/x-www-form-urlencoded'
-		$atributos ['tipoFormulario'] = '';
-		
+		$atributos ['tipoFormulario'] = 'multipart/form-data';
 		// Si no se coloca, entonces toma el valor predeterminado 'POST'
 		$atributos ['metodo'] = 'POST';
-		
 		// Si no se coloca, entonces toma el valor predeterminado 'index.php' (Recomendado)
 		$atributos ['action'] = 'index.php';
-		$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo );
-		
+		// $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo );
 		// Si no se coloca, entonces toma el valor predeterminado.
 		$atributos ['estilo'] = '';
 		$atributos ['marco'] = true;
 		$tab = 1;
 		// ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
-		
 		// ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		echo $this->miFormulario->formulario ( $atributos );
 		
 		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
+		$esteCampo = "formularioDesagregacionNomina";
+		$atributos ['id'] = $esteCampo;
+		$atributos ["estilo"] = "jqueryui";
+		$atributos ['tipoEtiqueta'] = 'inicio';
+		$atributos ["leyenda"] = "Parametros de Consulta";
+		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 		
 		// -----------------CONTROL: Lista Vigencia Nómina ----------------------------------------------------------------
-		$esteCampo = 'listaVigencia';
+		$esteCampo = "vigencia";
 		$atributos ['nombre'] = $esteCampo;
 		$atributos ['id'] = $esteCampo;
 		$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
@@ -87,6 +88,9 @@ class Formulario {
 		$atributos ['tab'] = $tab;
 		$atributos ['evento'] = null;
 		$atributos ['deshabilitado'] = false;
+		$atributos ['anchoEtiqueta'] = 150;
+		$atributos ['anchoCaja'] = 49;
+		$atributos['etiquetaObligatorio'] = true;		
 		
 		$vigencia = array ();
 		$contador = 0;
@@ -101,6 +105,7 @@ class Formulario {
 		$atributos ['matrizItems'] = $matrizItems;
 		
 		$atributos ['estilo'] = 'jqueryui';
+		$atributos ['validar'] = 'required';
 		$atributos ['columnas'] = '';
 		$atributos ['tamanno'] = 1;
 		$atributos ['limitar'] = '';
@@ -194,37 +199,11 @@ class Formulario {
 		echo $this->miFormulario->campoCuadroLista($atributos);
 		unset($atributos);
 		// -----------------FIN CONTROL: Nómina a Generar -----------------------------------------------------------
-					
-		// ---------------- CONTROL: Cuadro de Texto Ingrese un valor--------------------------------------------------------
-		$esteCampo = 'nombreBloque';
-		$atributos ['id'] = $esteCampo;
-		$atributos ['nombre'] = $esteCampo;
-		$atributos ['tipo'] = 'text';
-		$atributos ['estilo'] = 'jqueryui';
-		$atributos ['marco'] = true;
-		$atributos ['columnas'] = 1;
-		$atributos ['dobleLinea'] = false;
-		$atributos ['tabIndex'] = $tab;
-		$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-		$atributos ['validar'] = 'required';
-		$atributos ['etiquetaObligatorio'] = true;
-		
-		if (isset ( $_REQUEST [$esteCampo] )) {
-			$atributos ['valor'] = $_REQUEST [$esteCampo];
-		} else {
-			$atributos ['valor'] = '';
-		}
-		$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-		$atributos ['deshabilitado'] = false;
-		$atributos ['tamanno'] = '60';
-		$atributos ['maximoTamanno'] = '';
-		$tab ++;
-		
-		// Aplica atributos globales al control
-		$atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->campoCuadroTexto ( $atributos );
-		unset($atributos);
-		// --------------- FIN CONTROL : Cuadro de Texto  Ingrese un valor--------------------------------------------------
+				
+		// ------------------Division para los botones-------------------------
+		$atributos ["id"] = "botones";
+		$atributos ["estilo"] = "marcoBotones";
+		echo $this->miFormulario->division ( "inicio", $atributos );
 		
 		// -----------------CONTROL: Botón Consultar----------------------------------------------------------------
 		$esteCampo = 'botonConsultar';
@@ -249,8 +228,8 @@ class Formulario {
 		echo $this->miFormulario->campoBoton ( $atributos );
 		unset($atributos);
 		// -----------------FIN CONTROL: Botón Consultar -----------------------------------------------------------
-
 		// ------------------Fin Division para los botones-------------------------
+
 		echo $this->miFormulario->division ( 'fin' );
 		
 		// ------------------- SECCION: Paso de variables ------------------------------------------------
