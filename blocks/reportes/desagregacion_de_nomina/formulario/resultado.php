@@ -111,7 +111,7 @@ class registrarForm {
 // ------------------Fin Division para los botones-------------------------
         echo $this->miFormulario->division("fin");
         $datos=array();
-        $datos = array("foo", "bar", "hello", "world");     
+//         $datos = array("foo", "bar", "hello", "world");     
         if ($datos) {
             echo $this->miFormulario->tablaReporte($datos);
 // Fin de Conjunto de Controles
