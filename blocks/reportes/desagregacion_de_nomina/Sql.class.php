@@ -32,18 +32,25 @@ class Sql extends \Sql {
 			 * Clausulas específicas
 			 */
 			
-			case "tipoNomina" :
-				$cadenaSql = " SELECT id, tipo";
-				$cadenaSql .= " FROM tipo_nomina ";
-				$cadenaSql .= " WHERE estado_registro='TRUE' ";
-				break;
-			
 			case "nominaGenerar" :
-				$cadenaSql = " SELECT id, nomina";
-				$cadenaSql .= " FROM datos.nomina_generar ";
-				$cadenaSql .= " WHERE estado_registro='TRUE' ";
+				$cadenaSql = " SELECT id_nomina, nomina";
+				$cadenaSql .= " FROM datos.nomina_generar";				
 				break;
 			
+			case "tipoNomina" :
+				$cadenaSql = " SELECT id_nomina, opciones";
+				$cadenaSql .= " FROM datos.nomina_generar, datos.menus";
+				$cadenaSql .= " WHERE id_fun = id_menu";
+				$cadenaSql .= " AND id_nomina = ".$variable;
+				break;
+			
+			case "periodo" :
+				$cadenaSql = " SELECT id_nomina, opciones";
+				$cadenaSql .= " FROM datos.nomina_generar, datos.menus";
+				$cadenaSql .= " WHERE id_per = id_menu";
+				$cadenaSql .= " AND id_nomina = ".$variable;
+				break;
+				
 			case 'insertarRegistro' :
 				$cadenaSql = 'INSERT INTO ';
 				$cadenaSql .= $prefijo . 'pagina ';

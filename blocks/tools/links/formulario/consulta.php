@@ -86,7 +86,8 @@ class registrarForm {
 		$atributos['id'] = $esteCampo;		
 		$linkPagina = 'development';
 		$direccion = getLink::obtener($linkPagina);;
-		$atributos['enlace'] = $direccion;
+		$atributos['enlace'] = 'development';
+		$atributos['ENLACECODIFICAR'] = 'development';
 		$atributos['tabIndex'] = $tab;
 		$atributos['tipo'] = 'link';
 		$atributos['estilo'] = 'jqueryui';
