@@ -1,7 +1,7 @@
 <?php
 
 
-namespace reportes\desagregacion_de_nomina;
+namespace reportes\desagregacionDeNomina;
 
 // Evitar un acceso directo a este archivo
 if (! isset ( $GLOBALS ["autorizado"] )) {
