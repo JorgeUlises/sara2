@@ -12,6 +12,7 @@ $this->idioma['botonIngresar']='Ingresar';
 $this->idioma['vigencia']='Vigencia';
 $this->idioma['tipoNomina']='Tipo de Nómina';
 $this->idioma['nominaGenerar']='Nómina a Generar';
+$this->idioma['periodo']='Periodo/Mes';
 $this->idioma['radioButtonDocumento']='Documento Funcionario';
 $this->idioma['radioButtonNombre']='Nombre Funcionario';
 $this->idioma['botonConsultar']='Consultar';
@@ -20,5 +21,10 @@ $this->idioma['formularioDesagregacionNomina']='Desagregacion de Nómina de Func
 
 $this->idioma['nombreBloque']='Ingrese un valor:';
 $this->idioma['nombreBloqueTitulo']='Digite algo';
+$this->idioma['ENE']='JANUARY';
+
+$this->idioma['botonSalida']='JANUARY';
+
+
 
 ?>
