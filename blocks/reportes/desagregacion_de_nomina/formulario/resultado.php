@@ -120,7 +120,7 @@ class registrarForm {
 		
 		
 		$cadenaSql = $this->miSql->getCadenaSql('nominaGenerar', null);
-	
+	var_dump($cadenaSql);
 		$datos = $esteRecursoDB->ejecutarAcceso($cadenaSql, 'busqueda');
 		
 		if ($datos) {

@@ -15,7 +15,7 @@ $this->idioma['nominaGenerar']='Nómina a Generar';
 $this->idioma['radioButtonDocumento']='Documento Funcionario';
 $this->idioma['radioButtonNombre']='Nombre Funcionario';
 $this->idioma['botonConsultar']='Consultar';
-$this->idioma['botonRegresar']='Regesar';
+$this->idioma['botonRegresar']='Regresar';
 $this->idioma['formularioDesagregacionNomina']='Desagregacion de Nómina de Funcionario';
 
 $this->idioma['nombreBloque']='Ingrese un valor:';
