@@ -33,9 +33,9 @@ class Sql extends \Sql {
 			 */
 			
 			case "nominaGenerar" :
-				$cadenaSql = "SELECT id AS 'Número de Identificación', nomina AS 'Nómina'";
-				$cadenaSql .= " FROM datos.nomina_generar";
-				$cadenaSql .= "  WHERE estado_registro='TRUE'";
+				$cadenaSql = " SELECT id_nomina, nomina";
+				$cadenaSql .= " FROM datos.nomina_generar";				
+				break;
 				
 			case "tipoNomina" :
 				$cadenaSql = " SELECT id_nomina, opciones";

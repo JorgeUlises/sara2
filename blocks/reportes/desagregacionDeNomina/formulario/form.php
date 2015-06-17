@@ -146,7 +146,7 @@ class Formulario {
 		$atributos ['limitar'] = 1;
 		$atributos ['anchoCaja'] = 49;
 		$atributos ['miEvento'] = '';
-		$cadena_sql = $this->miSql->getCadenaSql ( 'nominaGenerar' );
+		$cadena_sql = $this->miSql->getCadenaSql ( 'nominaGenerar');
 		$matrizItems = array (
 				array (
 						0,
