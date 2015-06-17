@@ -1,6 +1,6 @@
 <?
 
-namespace reportes\desagregacion_de_nomina;
+namespace reportes\desagregacionDeNomina;
 
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");

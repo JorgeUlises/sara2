@@ -1,7 +1,7 @@
 <?php 
 
 
-namespace reportes\desagregacion_de_nomina\formulario;
+namespace reportes\desagregacionDeNomina\formulario;
 
 
 
