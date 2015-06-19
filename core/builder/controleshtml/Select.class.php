@@ -247,7 +247,7 @@ class Select extends HtmlBase {
                 $miEvento = 'onchange="this.form.submit()"';
                 break;
 
-            case 2 :
+            case 2 :            	            	
                 $miEvento = $this->armarEvento();
                 break;
 
@@ -268,13 +268,18 @@ class Select extends HtmlBase {
      */
     private function armarEvento() {
         $this->control = explode("|", $this->atributos ["ajax_control"]);
-        $miEvento = "onchange=\"" . $this->atributos ["ajax_function"];
-        $miEvento .= "(";
+        $miEvento = "onchange= " . $this->atributos ["ajax_function"];
+        $miEvento .= "";
         foreach ($this->control as $miControl) {
-            $miEvento .= "document.getElementById('" . $miControl . "').value,";
+            $miEvento .= "alert(document.getElementById('".$miControl."').value),";
         }
+        
         $miEvento = substr($miEvento, 0, (strlen($miEvento) - 1));
-        return $miEvento . ")\"";
+        $miEvento .= "";
+        
+        //echo $miEvento;
+        
+        return  $miEvento;
     }
 
     private function armarEvento2() {

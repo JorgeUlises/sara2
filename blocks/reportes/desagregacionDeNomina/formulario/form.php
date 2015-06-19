@@ -77,50 +77,8 @@ class Formulario {
 		$atributos ["leyenda"] = "Parametros de Consulta";
 		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 		
-		
-		$seleccion = 4; //Modificando esta variable se pueden ver los cambios en las listas <select>
-		
-		// -----------------CONTROL: Lista Vigencia Nómina ----------------------------------------------------------------
-		$esteCampo = "vigencia";
-		$atributos ['nombre'] = $esteCampo;
-		$atributos ['id'] = $esteCampo;
-		$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-		$atributos ['tipo'] = 'select';
-		$atributos ['tab'] = $tab;
-		$atributos ['evento'] = null;
-		$atributos ['deshabilitado'] = false;
-		$atributos ['anchoEtiqueta'] = 150;
-		$atributos ['anchoCaja'] = 49;
-		$atributos ['etiquetaObligatorio'] = true;
-		
-		$vigencia = array ();
-		$contador = 0;
-		for($i = 2000; $i <= date ( 'Y' ); $i ++) {
-			$vigencia [] = array (
-					$contador,
-					$i 
-			);
-			$contador ++;
-		}
-		$matrizItems = $vigencia;
-		$atributos ['matrizItems'] = $matrizItems;
-		
-		$atributos ['estilo'] = 'jqueryui';
-		$atributos ['validar'] = 'required';
-		$atributos ['columnas'] = '';
-		$atributos ['tamanno'] = 1;
-		$atributos ['limitar'] = '';
-		$atributos ['valor'] = $this->lenguaje->getCadena ( $esteCampo );
-		// $atributos ['nombreFormulario'] = $esteBloque ['nombre'];
-		$tab ++;
-		
-		// Aplica atributos globales al control
-		$atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->campoCuadroLista ( $atributos );
-		
-		unset ( $atributos ); // Función que borra los datos almacenados en el array atributos.
-		                      // -----------------FIN CONTROL: Lista Vigencia Nómina -----------------------------------------------------------
-		                      
+		$seleccion = 4; // Modificando esta variable se pueden ver los cambios en las listas <select>
+		                
 		// -----------------CONTROL: Lista Nómina Generar ----------------------------------------------------------------
 		$esteCampo = "nominaGenerar";
 		$atributos ['nombre'] = $esteCampo;
@@ -130,7 +88,8 @@ class Formulario {
 		$atributos ['tab'] = $tab ++;
 		$atributos ['seleccion'] = - 1;
 		$atributos ['anchoEtiqueta'] = 150;
-		$atributos ['evento'] = '';
+		$atributos ['evento'] = 2;
+		$atributos ['miEvento'] = '';
 		if (isset ( $_REQUEST [$esteCampo] )) {
 			$atributos ['valor'] = $_REQUEST [$esteCampo];
 		} else {
@@ -145,15 +104,14 @@ class Formulario {
 		$atributos ['validar'] = 'required';
 		$atributos ['limitar'] = 1;
 		$atributos ['anchoCaja'] = 49;
-		$atributos ['miEvento'] = '';
-		$cadena_sql = $this->miSql->getCadenaSql ( 'nominaGenerar');
+		$cadena_sql = $this->miSql->getCadenaSql ( 'nominaGenerar' );
 		$matrizItems = array (
 				array (
 						0,
 						' ' 
 				) 
 		);
-		$matrizItems = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );		
+		$matrizItems = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
 		$atributos ['matrizItems'] = $matrizItems;
 		// Aplica atributos globales al control
 		$atributos = array_merge ( $atributos, $atributosGlobales );
@@ -162,133 +120,212 @@ class Formulario {
 		// -----------------FIN CONTROL: Lista Nómina Generar -----------------------------------------------------------
 		
 		// -----------------CONTROL: Lista Tipo Nómina ----------------------------------------------------------
-		$esteCampo = "tipoNomina";
-		$atributos ['nombre'] = $esteCampo;
-		$atributos ['id'] = $esteCampo;
-		$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-		$atributos ['etiquetaObligatorio'] = true;
-		$atributos ['tab'] = $tab ++;
-		$atributos ['seleccion'] = - 1;
-		$atributos ['anchoEtiqueta'] = 150;
-		$atributos ['evento'] = '';
-		if (isset ( $_REQUEST [$esteCampo] )) {
-			$atributos ['valor'] = $_REQUEST [$esteCampo];
-		} else {
-			$atributos ['valor'] = '';
-		}
-		$atributos ['deshabilitado'] = false;
-		$atributos ['columnas'] = 1;
-		$atributos ['tamanno'] = 1;
-		$atributos ['ajax_function'] = '';
-		$atributos ['ajax_control'] = $esteCampo;
-		$atributos ['estilo'] = 'jqueryui';
-		$atributos ['validar'] = 'required';
-		$atributos ['limitar'] = 1;
-		$atributos ['anchoCaja'] = 49;
-		$atributos ['miEvento'] = '';
-		$cadena_sql = $this->miSql->getCadenaSql ( 'tipoNomina', $seleccion );
-		$matrizItems = array (
-				array (
-						0,
-						' ' 
-				) 
-		);
 		
-		//Código para generar los datos que se incorporaran en los select
-		$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );		
-        $marizItems = explode(",", $matrizCadena[0]['opciones']);
-		$contador = 1;
-		$cont2 = 0;		
-		$id;
-		if(count($matrizCadena)>0){
-			foreach ($marizItems as $a){
-				if($contador==1){
-					$id = $a;				
-					$contador++;
-				}else if($contador==2){
-					$matrizFuncionario[] = array('id'=>$id,'nombre' => $a);
-					$matrizFuncionario[$cont2][0] = $id;
-					$matrizFuncionario[$cont2][1] = $a;
-				
-					$contador=1;
-					$cont2++;
-				}				
-			}	
-		}
-		//Fin Código para generar los datos que se incorporan en el select	
-		
-		$atributos ['matrizItems'] = $matrizFuncionario;
-		// Aplica atributos globales al control
+		$atributos ["id"] = "tipoNomina_div";
+		$atributos ["estiloEnLinea"] = "display:none";
 		$atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->campoCuadroLista ( $atributos );
+		echo $this->miFormulario->division ( "inicio", $atributos );
 		unset ( $atributos );
-		unset ( $matrizFuncionario );
-		// -----------------FIN CONTROL: Tipo Nómina-----------------------------------------------------------
+		{			
+			$esteCampo = "tipoNomina";
+			$atributos ['nombre'] = $esteCampo;
+			$atributos ['id'] = $esteCampo;
+			$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+			$atributos ['etiquetaObligatorio'] = true;
+			$atributos ['tab'] = $tab ++;
+			$atributos ['seleccion'] = - 1;
+			$atributos ['anchoEtiqueta'] = 150;
+			$atributos ['evento'] = '';
+			if (isset ( $_REQUEST [$esteCampo] )) {
+				$atributos ['valor'] = $_REQUEST [$esteCampo];
+			} else {
+				$atributos ['valor'] = '';
+			}
+			$atributos ['deshabilitado'] = false;
+			$atributos ['columnas'] = 1;
+			$atributos ['tamanno'] = 1;
+			$atributos ['ajax_function'] = '';
+			$atributos ['ajax_control'] = $esteCampo;
+			$atributos ['estilo'] = 'jqueryui';
+			$atributos ['validar'] = 'required';
+			$atributos ['limitar'] = 1;
+			$atributos ['anchoCaja'] = 49;
+			$atributos ['miEvento'] = '';
+			$cadena_sql = $this->miSql->getCadenaSql ( 'tipoNomina', $seleccion );
+			$matrizItems = array (
+					array (
+							0,
+							' ' 
+					) 
+			);
+			
+			// Código para generar los datos que se incorporaran en los select
+			$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
+			$marizItems = explode ( ",", $matrizCadena [0] ['opciones'] );
+			$contador = 1;
+			$cont2 = 0;
+			$id;
+			if (count ( $matrizCadena ) > 0) {
+				foreach ( $marizItems as $a ) {
+					if ($contador == 1) {
+						$id = $a;
+						$contador ++;
+					} else if ($contador == 2) {
+						$matrizFuncionario [] = array (
+								'id' => $id,
+								'nombre' => $a 
+						);
+						$matrizFuncionario [$cont2] [0] = $id;
+						$matrizFuncionario [$cont2] [1] = $a;
+						
+						$contador = 1;
+						$cont2 ++;
+					}
+				}
+			}
+			// Fin Código para generar los datos que se incorporan en el select
+			
+			$atributos ['matrizItems'] = $matrizFuncionario;
+			// Aplica atributos globales al control
+			$atributos = array_merge ( $atributos, $atributosGlobales );
+			echo $this->miFormulario->campoCuadroLista ( $atributos );
+			unset ( $atributos );
+			unset ( $matrizFuncionario );
+			
+			// -----------------FIN CONTROL: Tipo Nómina-----------------------------------------------------------
+			
+			echo $this->miFormulario->division ( "fin" );			
+		}
+		
+		
+		
+		// -----------------CONTROL: Lista Vigencia Nómina ----------------------------------------------------------------
+		
+		$atributos ["id"] = "vigencia_div";
+		$atributos ["estiloEnLinea"] = "display:none";
+		$atributos = array_merge ( $atributos, $atributosGlobales );
+		echo $this->miFormulario->division ( "inicio", $atributos );
+		unset ( $atributos );
+		{			
+			$esteCampo = "vigencia";
+			$atributos ['nombre'] = $esteCampo;
+			$atributos ['id'] = $esteCampo;
+			$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+			$atributos ['tipo'] = 'select';
+			$atributos ['tab'] = $tab;
+			$atributos ['evento'] = null;
+			$atributos ['deshabilitado'] = false;
+			$atributos ['anchoEtiqueta'] = 150;
+			$atributos ['anchoCaja'] = 49;
+			$atributos ['etiquetaObligatorio'] = true;
+			
+			$vigencia = array ();
+			$contador = 0;
+			for($i = 2000; $i <= date ( 'Y' ); $i ++) {
+				$vigencia [] = array (
+						$contador,
+						$i 
+				);
+				$contador ++;
+			}
+			$matrizItems = $vigencia;
+			$atributos ['matrizItems'] = $matrizItems;
+			
+			$atributos ['estilo'] = 'jqueryui';
+			$atributos ['validar'] = 'required';
+			$atributos ['columnas'] = '';
+			$atributos ['tamanno'] = 1;
+			$atributos ['limitar'] = '';
+			$atributos ['valor'] = $this->lenguaje->getCadena ( $esteCampo );
+			// $atributos ['nombreFormulario'] = $esteBloque ['nombre'];
+			$tab ++;
+			
+			// Aplica atributos globales al control
+			$atributos = array_merge ( $atributos, $atributosGlobales );
+			echo $this->miFormulario->campoCuadroLista ( $atributos );
+			
+			unset ( $atributos ); // Función que borra los datos almacenados en el array atributos.
+			                      
+			// -----------------FIN CONTROL: Lista Vigencia Nómina -----------------------------------------------------------
+			
+			echo $this->miFormulario->division ( "fin" );
+		}
 		
 		// -----------------CONTROL: Lista Periodo ----------------------------------------------------------
-		$esteCampo = "periodo";
-		$atributos ['nombre'] = $esteCampo;
-		$atributos ['id'] = $esteCampo;
-		$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-		$atributos ['etiquetaObligatorio'] = true;
-		$atributos ['tab'] = $tab ++;
-		$atributos ['seleccion'] = - 1;
-		$atributos ['anchoEtiqueta'] = 150;
-		$atributos ['evento'] = '';
-		if (isset ( $_REQUEST [$esteCampo] )) {
-			$atributos ['valor'] = $_REQUEST [$esteCampo];
-		} else {
-			$atributos ['valor'] = '';
-		}
-		$atributos ['deshabilitado'] = false;
-		$atributos ['columnas'] = 1;
-		$atributos ['tamanno'] = 1;
-		$atributos ['ajax_function'] = '';
-		$atributos ['ajax_control'] = $esteCampo;
-		$atributos ['estilo'] = 'jqueryui';
-		$atributos ['validar'] = 'required';
-		$atributos ['limitar'] = 1;
-		$atributos ['anchoCaja'] = 49;
-		$atributos ['miEvento'] = '';
-		$cadena_sql = $this->miSql->getCadenaSql ( 'periodo', $seleccion );
-		$matrizItems = array (
-				array (
-						0,
-						' '
-				)
-		);
 		
-		//Código para generar los datos que se incorporaran en los select
-		$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
-		$marizItems = explode(",", $matrizCadena[0]['opciones']);
-		$contador = 1;
-		$cont2 = 0;
-		$id;
-		foreach ($marizItems as $a){
-			if($contador==1){
-				$id = $a;
-				$contador++;
-			}else if($contador==2){
-				$matrizPeriodo[] = array('id'=>$id,'nombre' => $a);
-				$matrizPeriodo[$cont2][0] = $id;
-				$matrizPeriodo[$cont2][1] = $a;
-		
-				$contador=1;
-				$cont2++;
-			}
-		}
-		
-		
-		//Fin Código para generar los datos que se incorporan en el select
-		
-		$atributos ['matrizItems'] = $matrizPeriodo;
-		// Aplica atributos globales al control
+		$atributos ["id"] = "periodo_div";
+		$atributos ["estiloEnLinea"] = "display:none";
 		$atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->campoCuadroLista ( $atributos );
+		echo $this->miFormulario->division ( "inicio", $atributos );
 		unset ( $atributos );
-		unset ( $matrizPeriodo );
-		// -----------------FIN CONTROL: Nómina a Generar -----------------------------------------------------------
-		
+		{			
+			$esteCampo = "periodo";
+			$atributos ['nombre'] = $esteCampo;
+			$atributos ['id'] = $esteCampo;
+			$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+			$atributos ['etiquetaObligatorio'] = true;
+			$atributos ['tab'] = $tab ++;
+			$atributos ['seleccion'] = - 1;
+			$atributos ['anchoEtiqueta'] = 150;
+			$atributos ['evento'] = '';
+			if (isset ( $_REQUEST [$esteCampo] )) {
+				$atributos ['valor'] = $_REQUEST [$esteCampo];
+			} else {
+				$atributos ['valor'] = '';
+			}
+			$atributos ['deshabilitado'] = false;
+			$atributos ['columnas'] = 1;
+			$atributos ['tamanno'] = 1;
+			$atributos ['ajax_function'] = '';
+			$atributos ['ajax_control'] = $esteCampo;
+			$atributos ['estilo'] = 'jqueryui';
+			$atributos ['validar'] = 'required';
+			$atributos ['limitar'] = 1;
+			$atributos ['anchoCaja'] = 49;
+			$atributos ['miEvento'] = '';
+			$cadena_sql = $this->miSql->getCadenaSql ( 'periodo', $seleccion );
+			$matrizItems = array (
+					array (
+							0,
+							' ' 
+					) 
+			);
+			
+			// Código para generar los datos que se incorporaran en los select
+			$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
+			$marizItems = explode ( ",", $matrizCadena [0] ['opciones'] );
+			$contador = 1;
+			$cont2 = 0;
+			$id;
+			foreach ( $marizItems as $a ) {
+				if ($contador == 1) {
+					$id = $a;
+					$contador ++;
+				} else if ($contador == 2) {
+					$matrizPeriodo [] = array (
+							'id' => $id,
+							'nombre' => $a 
+					);
+					$matrizPeriodo [$cont2] [0] = $id;
+					$matrizPeriodo [$cont2] [1] = $a;
+					
+					$contador = 1;
+					$cont2 ++;
+				}
+			}
+			
+			// Fin Código para generar los datos que se incorporan en el select
+			
+			$atributos ['matrizItems'] = $matrizPeriodo;
+			// Aplica atributos globales al control
+			$atributos = array_merge ( $atributos, $atributosGlobales );
+			echo $this->miFormulario->campoCuadroLista ( $atributos );
+			unset ( $atributos );
+			unset ( $matrizPeriodo );
+			// -----------------FIN CONTROL: Nómina a Generar -----------------------------------------------------------
+			
+			echo $this->miFormulario->division ( "fin" );
+		}
 		
 		// ------------------Division para los botones-------------------------
 		$atributos ["id"] = "botones";
