@@ -151,41 +151,13 @@ class Formulario {
 			$atributos ['validar'] = 'required';
 			$atributos ['limitar'] = 1;
 			$atributos ['anchoCaja'] = 49;
-			$atributos ['miEvento'] = '';
-			$cadena_sql = $this->miSql->getCadenaSql ( 'tipoNomina', $seleccion );
+			$atributos ['miEvento'] = '';			
 			$matrizItems = array (
 					array (
 							0,
 							' ' 
 					) 
-			);
-			
-// 			// Código para generar los datos que se incorporaran en los select
-// 			$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
-// 			$marizItems = explode ( ",", $matrizCadena [0] ['opciones'] );
-// 			$contador = 1;
-// 			$cont2 = 0;
-// 			$id;
-// 			if (count ( $matrizCadena ) > 0) {
-// 				foreach ( $marizItems as $a ) {
-// 					if ($contador == 1) {
-// 						$id = $a;
-// 						$contador ++;
-// 					} else if ($contador == 2) {
-// 						$matrizFuncionario [] = array (
-// 								'id' => $id,
-// 								'nombre' => $a 
-// 						);
-// 						$matrizFuncionario [$cont2] [0] = $id;
-// 						$matrizFuncionario [$cont2] [1] = $a;
-						
-// 						$contador = 1;
-// 						$cont2 ++;
-// 					}
-// 				}
-// 			}
-// 			// Fin Código para generar los datos que se incorporan en el select
-			
+			);		
 			$atributos ['matrizItems'] = $matrizItems;
 			// Aplica atributos globales al control
 			$atributos = array_merge ( $atributos, $atributosGlobales );
@@ -196,8 +168,7 @@ class Formulario {
 			// -----------------FIN CONTROL: Tipo Nómina-----------------------------------------------------------
 			
 			echo $this->miFormulario->division ( "fin" );			
-		}
-		
+		}		
 		
 		
 		// -----------------CONTROL: Lista Vigencia Nómina ----------------------------------------------------------------
@@ -283,41 +254,14 @@ class Formulario {
 			$atributos ['validar'] = 'required';
 			$atributos ['limitar'] = 1;
 			$atributos ['anchoCaja'] = 49;
-			$atributos ['miEvento'] = '';
-			$cadena_sql = $this->miSql->getCadenaSql ( 'periodo', $seleccion );
+			$atributos ['miEvento'] = '';			
 			$matrizItems = array (
 					array (
 							0,
 							' ' 
 					) 
-			);
-			
-			// Código para generar los datos que se incorporaran en los select
-			$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
-			$marizItems = explode ( ",", $matrizCadena [0] ['opciones'] );
-			$contador = 1;
-			$cont2 = 0;
-			$id;
-			foreach ( $marizItems as $a ) {
-				if ($contador == 1) {
-					$id = $a;
-					$contador ++;
-				} else if ($contador == 2) {
-					$matrizPeriodo [] = array (
-							'id' => $id,
-							'nombre' => $a 
-					);
-					$matrizPeriodo [$cont2] [0] = $id;
-					$matrizPeriodo [$cont2] [1] = $a;
-					
-					$contador = 1;
-					$cont2 ++;
-				}
-			}
-			
-			// Fin Código para generar los datos que se incorporan en el select
-			
-			$atributos ['matrizItems'] = $matrizPeriodo;
+			);						
+			$atributos ['matrizItems'] = $matrizItems;
 			// Aplica atributos globales al control
 			$atributos = array_merge ( $atributos, $atributosGlobales );
 			echo $this->miFormulario->campoCuadroLista ( $atributos );

@@ -101,21 +101,30 @@ function consultarPeriodo(elem, request, response){
 
    	  $("#<?php echo $this->campoSeguro('nominaGenerar')?>").change(function(){
    		 if($("#<?php echo $this->campoSeguro('nominaGenerar')?>").val()!= ""){
-   	   		 
+
+    	   	//Se hacen visibles los select al seleccionar el tipo de nómina a generar.
+    	   	 
    			$("#<?php echo $this->campoSeguro('tipoNomina_div')?>").css('display','block');
    			$("#<?php echo $this->campoSeguro('vigencia_div')?>").css('display','block');
    			$("#<?php echo $this->campoSeguro('periodo_div')?>").css('display','block');
+
+   			//Se restablecen los valores (Seleccione .....) en todos los select
+   			
+   			$("#<?php echo $this->campoSeguro('tipoNomina')?>").val("-1");
+   			$("#<?php echo $this->campoSeguro('vigencia')?>").val("-1");
+   			$("#<?php echo $this->campoSeguro('periodo')?>").val("-1");
    			   			    		  
    		  	consultarTipoNomina();
    		 	consultarPeriodo();
    		  	
        	}else{
+
+           	// Se ocultan los select si se llegase a seleccionar la opción (Selecione .....)
            	
        		$("#<?php echo $this->campoSeguro('tipoNomina_div')?>").css('display','none'); 
        		$("#<?php echo $this->campoSeguro('vigencia_div')?>").css('display','none'); 
        		$("#<?php echo $this->campoSeguro('periodo_div')?>").css('display','none'); 
-	    }
-    		          	 
+	    }    		          	 
     		  
    	  });	
    });

@@ -9,6 +9,9 @@ if ($_REQUEST ['funcion'] == 'consultarTipoNomina') {
 	$cadenaSql = $this->sql->getCadenaSql ( 'tipoNomina', $_REQUEST ['valor'] );
 	$datos = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 	
+	//Ya que la consulta retorna una cadena con los diferentes id e items, se tiene que reestructurar el arreglo
+	//Con el fin que se permitan cargar dichos datos al Select.
+	
 	$marizItems = explode ( ",", $datos [0] ['opciones'] );
 	$contador = 1;
 	$cont2 = 0;
@@ -30,6 +33,8 @@ if ($_REQUEST ['funcion'] == 'consultarTipoNomina') {
 			$cont2 ++;
 		}
 	}
+	
+	//Fin de la generación de la matriz.
 	
 	
 	$matrizFuncionario=json_encode( $matrizFuncionario );
