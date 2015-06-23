@@ -1,12 +1,9 @@
 <?
-
 namespace reportes\desagregacionDeNomina;
-
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");
 	exit ();
 }
-
 include_once ("core/manager/Configurador.class.php");
 class Frontera {
 	var $ruta;
@@ -36,7 +33,10 @@ class Frontera {
 	function setFuncion($funcion) {
 		$this->funcion = $funcion;
 	}
+		
 	function html() {
+		
+		
 		
 		// Como se tiene un solo formulario no es necesario un switch para cargarlo:
 		$this->ruta = $this->miConfigurador->getVariableConfiguracion ( "rutaBloque" );
@@ -44,8 +44,8 @@ class Frontera {
 		if (isset ( $_REQUEST ['opcion'] )) {
 			
 			switch ($_REQUEST ['opcion']) {
-				
-				case "mostrarIngreso" :					
+		
+				case "mostrarIngreso" :		
 					include_once ($this->ruta . "/formulario/resultado.php");
 					break;
 				case "regresar" :

@@ -321,12 +321,11 @@ class Formulario {
 		
 		// Paso 1: crear el listado de variables
 		
-		$valorCodificado = 'actionBloque=' . $esteBloque ['nombre'];
-		$valorCodificado .= '&pagina=' . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
+	//	$valorCodificado = 'actionBloque=' . $esteBloque ['nombre'];
+		$valorCodificado = 'pagina=' . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 		$valorCodificado .= '&bloque=' . $esteBloque ['nombre'];
 		$valorCodificado .= '&bloqueGrupo=' . $esteBloque ['grupo'];
-		$valorCodificado .= '&opcion=mostrarIngreso'; // Aqui se pone la opción a la cual se dirige la funcion
-		$valorCodificado .= '&saludo=vamosAtrabajar';
+		$valorCodificado .= '&opcion=mostrarIngreso'; // Aqui se pone la opción a la cual se dirige la funcion		
 		/**
 		 * SARA permite que los nombres de los campos sean dinámicos.
 		 * Para ello utiliza la hora en que es creado el formulario para
@@ -362,26 +361,26 @@ class Formulario {
 		$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
 		
 		$variable = "pagina=development";
-		// $variable.="&opcion= estiloMarco";
+// 		$variable.="&opcion= estiloMarco";
 		$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 		// ******************************************************************************
 		
-		// -----------------CONTROL: Link development ----------------------------------------------------------------
-		$esteCampo = 'linkDevelopment';
-		$atributos ['id'] = $esteCampo;
-		$atributos ['enlace'] = $variable;
-		$atributos ['tabIndex'] = $tab;
-		$atributos ['tipo'] = 'link';
-		$atributos ['estilo'] = ' ';
-		$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
-		$tab ++;
+// 		// -----------------CONTROL: Link development ----------------------------------------------------------------
+// 		$esteCampo = 'linkDevelopment';
+// 		$atributos ['id'] = $esteCampo;
+// 		$atributos ['enlace'] = $variable;
+// 		$atributos ['tabIndex'] = $tab;
+// 		$atributos ['tipo'] = 'link';
+// 		$atributos ['estilo'] = ' ';
+// 		$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
+// 		$tab ++;
 		
-		// Aplica atributos globales al control
-		$atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->enlace ( $atributos );
-		unset ( $atributos );
+// 		// Aplica atributos globales al control
+// 		$atributos = array_merge ( $atributos, $atributosGlobales );
+// 		echo $this->miFormulario->enlace ( $atributos );
+// 		unset ( $atributos );
 		
-		// -----------------FIN CONTROL: Link development -----------------------------------------------------------
+// 		// -----------------FIN CONTROL: Link development -----------------------------------------------------------
 		
 		return true;
 	}
