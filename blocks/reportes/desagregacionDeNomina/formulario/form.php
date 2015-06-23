@@ -46,6 +46,7 @@ class Formulario {
 		
 		// -------------------------------------------------------------------------------------------------
 		
+		echo $this->miConfigurador->fabricaConexiones->crypto->codificar('sistemasoas');
 		$conexion = 'datosNomina';
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
@@ -77,7 +78,7 @@ class Formulario {
 		$atributos ["leyenda"] = "Parametros de Consulta";
 		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 		
-		$seleccion = 4; // Modificando esta variable se pueden ver los cambios en las listas <select>
+		$seleccion = 3; // Modificando esta variable se pueden ver los cambios en las listas <select>
 		                
 		// -----------------CONTROL: Lista Nómina Generar ----------------------------------------------------------------
 		$esteCampo = "nominaGenerar";
@@ -88,8 +89,8 @@ class Formulario {
 		$atributos ['tab'] = $tab ++;
 		$atributos ['seleccion'] = - 1;
 		$atributos ['anchoEtiqueta'] = 150;
-		$atributos ['evento'] = 2;
-		$atributos ['miEvento'] = '';
+		$atributos ['evento'] = '';
+		$atributos ['miEvento'] = '';		
 		if (isset ( $_REQUEST [$esteCampo] )) {
 			$atributos ['valor'] = $_REQUEST [$esteCampo];
 		} else {
@@ -159,33 +160,33 @@ class Formulario {
 					) 
 			);
 			
-			// Código para generar los datos que se incorporaran en los select
-			$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
-			$marizItems = explode ( ",", $matrizCadena [0] ['opciones'] );
-			$contador = 1;
-			$cont2 = 0;
-			$id;
-			if (count ( $matrizCadena ) > 0) {
-				foreach ( $marizItems as $a ) {
-					if ($contador == 1) {
-						$id = $a;
-						$contador ++;
-					} else if ($contador == 2) {
-						$matrizFuncionario [] = array (
-								'id' => $id,
-								'nombre' => $a 
-						);
-						$matrizFuncionario [$cont2] [0] = $id;
-						$matrizFuncionario [$cont2] [1] = $a;
+// 			// Código para generar los datos que se incorporaran en los select
+// 			$matrizCadena = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, 'busqueda' );
+// 			$marizItems = explode ( ",", $matrizCadena [0] ['opciones'] );
+// 			$contador = 1;
+// 			$cont2 = 0;
+// 			$id;
+// 			if (count ( $matrizCadena ) > 0) {
+// 				foreach ( $marizItems as $a ) {
+// 					if ($contador == 1) {
+// 						$id = $a;
+// 						$contador ++;
+// 					} else if ($contador == 2) {
+// 						$matrizFuncionario [] = array (
+// 								'id' => $id,
+// 								'nombre' => $a 
+// 						);
+// 						$matrizFuncionario [$cont2] [0] = $id;
+// 						$matrizFuncionario [$cont2] [1] = $a;
 						
-						$contador = 1;
-						$cont2 ++;
-					}
-				}
-			}
-			// Fin Código para generar los datos que se incorporan en el select
+// 						$contador = 1;
+// 						$cont2 ++;
+// 					}
+// 				}
+// 			}
+// 			// Fin Código para generar los datos que se incorporan en el select
 			
-			$atributos ['matrizItems'] = $matrizFuncionario;
+			$atributos ['matrizItems'] = $matrizItems;
 			// Aplica atributos globales al control
 			$atributos = array_merge ( $atributos, $atributosGlobales );
 			echo $this->miFormulario->campoCuadroLista ( $atributos );
@@ -322,10 +323,10 @@ class Formulario {
 			echo $this->miFormulario->campoCuadroLista ( $atributos );
 			unset ( $atributos );
 			unset ( $matrizPeriodo );
-			// -----------------FIN CONTROL: Nómina a Generar -----------------------------------------------------------
+			// -----------------FIN CONTROL: Lista Periodo -----------------------------------------------------------
 			
 			echo $this->miFormulario->division ( "fin" );
-		}
+		}		
 		
 		// ------------------Division para los botones-------------------------
 		$atributos ["id"] = "botones";

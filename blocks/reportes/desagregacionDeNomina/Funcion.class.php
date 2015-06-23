@@ -60,8 +60,10 @@ class Funcion {
 					if (isset ( $_REQUEST ['botonSalida'] ) && $_REQUEST ['botonSalida'] == true) {
 						var_dump($_REQUEST);echo "estamos";exit;
 						$this->redireccionar("Salida");
+												
 					} else {
-						$this->mostrar ();
+						
+						$this->mostrar ();											
 					}
 					
 					exit ();

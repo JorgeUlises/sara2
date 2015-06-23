@@ -244,7 +244,7 @@ class Select extends HtmlBase {
         switch ($this->atributos [self::EVENTO]) {
             case 1 :
             case 'submit' :
-                $miEvento = 'onchange="this.form.submit()"';
+                $miEvento = 'onchange=submit()';                
                 break;
 
             case 2 :            	            	

@@ -31,4 +31,5 @@ foreach ($funcion as $clave=>$nombre){
 	}
 }
 
+include ("ajax.php");
 ?>

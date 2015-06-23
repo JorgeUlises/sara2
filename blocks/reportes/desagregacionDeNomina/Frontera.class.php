@@ -45,7 +45,7 @@ class Frontera {
 			
 			switch ($_REQUEST ['opcion']) {
 				
-				case "mostrarIngreso" :
+				case "mostrarIngreso" :					
 					include_once ($this->ruta . "/formulario/resultado.php");
 					break;
 				case "regresar" :

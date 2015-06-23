@@ -10,7 +10,8 @@ class Redireccionador {
 	public static function redireccionar($opcion, $valor = "") {
 		$miConfigurador = \Configurador::singleton ();
 		$miPagina = $miConfigurador->getVariableConfiguracion ( "pagina" );
-		
+		var_dump($_REQUEST);
+		exit;
 		switch ($opcion) {
 			
 			case "opcion1" :
@@ -20,7 +21,7 @@ class Redireccionador {
 				$variable .= '&digitado=' . $valor ['digitado'];
 				$variable .= '&hora=' . $valor ['hora'];
 				break;
-			case "Salida" :
+			case "salida" :
 				
 				$variable = 'pagina=' . $miPagina;
 				

@@ -24,32 +24,30 @@ class mostrar {
     
     function procesarFormulario() {    
 
-        //Aquí va la lógica de procesamiento
+//         //Aquí va la lógica de procesamiento
     
-       echo $_REQUEST['saludo']. "Usted digitó en el formulario ".$_REQUEST['nombreBloque'];
+//        //echo $_REQUEST['saludo']. "Usted digitó en el formulario ".$_REQUEST['bloque'];
        
-    	$conexion = "estructura";
-    	$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
+//     	$conexion = "estructura";
+//     	$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
     	
-    	$parametros=array(
-    		'nombre'=>$_REQUEST['nombreBloque'],
-    	);
+//     	$parametros=array(
+//     		'nombre'=>$_REQUEST['bloque'],
+//     	);
     	
-//     	 $cadenaSql = $this->miSql->getCadenaSql('solicitarPagina', $parametros);
-//     	$resultado= $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+// //     	 $cadenaSql = $this->miSql->getCadenaSql('solicitarPagina', $parametros);
+// //     	$resultado= $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
     	
-//     	var_dump($resultado);
+// //     	var_dump($resultado);
     	
-//     	exit;
-        //Al final se ejecuta la redirección la cual pasará el control a otra página
-        $variable=array(
-        	'digitado'=>$_REQUEST['nombreBloque'],
-        		'hora'=>date('Y-m-d'),
-        );
-        echo 'Aqui estamos';
-        exit;
-        
-        Redireccionador::redireccionar('opcion1',$variable);
+// //     	exit;
+//         //Al final se ejecuta la redirección la cual pasará el control a otra página
+//         $variable=array(
+//         	'digitado'=>$_REQUEST['bloque'],
+//         		'hora'=>date('Y-m-d'),
+//         );
+                
+        Redireccionador::redireccionar("opcion1", 'hola');
     	        
     }
     
